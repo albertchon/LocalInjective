@@ -1,13 +1,13 @@
 version: "3"
 
 services:
-  osmosisd:
-    image: osmolabs/osmosis:10.0.1
+  injectived:
+    image: osmolabs/injective:10.0.1
     user: $UID:$GID
     volumes:
-      - ./config:/osmosis/.osmosisd/config
-      - ./data:/osmosis/.osmosisd/data
-      - ./wasm:/osmosis/.osmosisd/wasm
+      - ./config:/injective/.injectived/config
+      - ./data:/injective/.injectived/data
+      - ./wasm:/injective/.injectived/wasm
     command:
       - start
     ports:

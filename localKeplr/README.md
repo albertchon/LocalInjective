@@ -1,6 +1,6 @@
 # LocalKeplr
 
-Adds localosmosis chain configuration to Keplr.
+Adds localinjective chain configuration to Keplr.
 
 ## Run
 ```

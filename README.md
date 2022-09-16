@@ -1,7 +1,7 @@
-# LocalOsmosis
+# LocalInjective
 
 ## Important note
-Please note that if you are working with the [Osmosis](https://github.com/osmosis-labs/osmosis/) repo you can also easily run a testnet by using some of the [make commands](https://github.com/osmosis-labs/osmosis/blob/main/Makefile), for example: 
+Please note that if you are working with the [Injective Core](https://github.com/InjectiveLabs/injective-core/) repo you can also easily run a testnet by using some of the [make commands](https://github.com/InjectiveLabs/injective/blob/main/Makefile), for example: 
 
 ```
 make localnet-start
@@ -9,13 +9,13 @@ make localnet-build
 ```
 
 
-## What is LocalOsmosis?
+## What is LocalInjective?
 
-LocalOsmosis (a fork of LocalTerra) is a complete Osmosis testnet and ecosystem containerized with Docker and orchestrated with a simple `docker-compose` file. It simplifies the way smart-contract developers test their contracts in a sandbox before they deploy them on a testnet or mainnet.
+LocalInjective (a fork of LocalTerra) is a complete Injective testnet and ecosystem containerized with Docker and orchestrated with a simple `docker-compose` file. It simplifies the way smart-contract developers test their contracts in a sandbox before they deploy them on a testnet or mainnet.
 
-LocalOsmosis comes preconfigured with opinionated, sensible defaults for standard testing environments. If other projects mention testing on LocalOsmosis, they are referring to the settings defined in this repo.
+LocalInjective comes preconfigured with opinionated, sensible defaults for standard testing environments. If other projects mention testing on LocalInjective, they are referring to the settings defined in this repo.
 
-LocalOsmosis has the following advantages over a public testnet:
+LocalInjective has the following advantages over a public testnet:
 
 - Easily modifiable world states
 - Quick to reset for rapid iterations
@@ -26,19 +26,19 @@ LocalOsmosis has the following advantages over a public testnet:
 
 - [`Docker`](https://www.docker.com/)
 - [`docker-compose`](https://github.com/docker/compose)
-- [`Osmosisd`](https://get.osmosis.zone)
-  * Select option 3 (localosmosis), the installer will configure everything for you. 
-  * The osmosisd dameon on your local computer is used to communicate with the localosmosis daemin running inside the Docker container. 
+- [`Injectived`](https://get.injective.zone)
+  * Select option 3 (localinjective-1), the installer will configure everything for you. 
+  * The injectived daemon on your local computer is used to communicate with the localinjective daemin running inside the Docker container. 
 - Supported known architecture: x86_64
 - 16+ GB of RAM is recommended
 
-## Install LocalOsmosis
+## Install LocalInjective
 
 1. Run the following commands::
 
 ```sh
-git clone https://github.com/osmosis-labs/LocalOsmosis.git
-cd LocalOsmosis
+git clone https://github.com/InjectiveLabs/LocalInjective.git
+cd LocalInjective
 ```
 
 2. Make sure your Docker daemon is running in the background and [`docker-compose`](https://github.com/docker/compose) is installed.
@@ -56,9 +56,9 @@ sudo apt install docker.io -y
 sudo apt install docker-compose -y
 ```
 
-## Start, stop, and reset LocalOsmosis
+## Start, stop, and reset LocalInjective
 
-- Start LocalOsmosis:
+- Start LocalInjective:
 
 ```sh
 make start
@@ -66,17 +66,17 @@ make start
 
 Your environment now contains:
 
-- [osmosisd](http://github.com/osmosis-labs/osmosis) RPC node running on `tcp://localhost:26657`
+- [injectived](http://github.com/InjectiveLabs/injective-core) RPC node running on `tcp://localhost:26657`
 - LCD running on http://localhost:1317
 
 
-Stop LocalOsmosis (and retain chain data):
+Stop LocalInjective (and retain chain data):
 
 ```sh
 make stop
 ```
 
-Stop LocalOsmosis (and delete chain data):
+Stop LocalInjective (and delete chain data):
 
 ```sh
 make restart
@@ -84,34 +84,34 @@ make restart
 
 ## Integrations
 
-### osmosisd
+### injectived
 
-1. Ensure the same version of `osmosisd` is present in your local computer and LocalOsmosis Docker container. You can check the version of localosmosis by checking the image in the docker-compose.yml file and the version of your osmosisd on your local machine with `osmosisd version`
+1. Ensure the same version of `injectived` is present in your local computer and LocalInjective Docker container. You can check the version of localinjective by checking the image in the docker-compose.yml file and the version of your injectived on your local machine with `injectived version`
 
-2. Use `osmosisd` from your local machine to talk to your LocalOsmosis `osmosisd` node:
+2. Use `injectived` from your local machine to talk to your LocalInjective `injectived` node:
 
 ```sh
-osmosisd status
+injectived status
 ```
 
-This command automatically works because `osmosisd` connects to `localhost:26657` by default.
+This command automatically works because `injectived` connects to `localhost:26657` by default.
 
 The following command is the explicit form:
 ```sh
-osmosisd status --node=tcp://localhost:26657
+injectived status --node=tcp://localhost:26657
 ```
 
-3. Run any of the `osmosisd` commands against your LocalOsmosis network, as shown in the following example:
+3. Run any of the `injectived` commands against your LocalInjective network, as shown in the following example:
 
 ```sh
-osmosisd query account osmo1l0jjmvdtj4c3f8cxzzgfhq0zhdzf2x8cgpg056
+injectived query account osmo1l0jjmvdtj4c3f8cxzzgfhq0zhdzf2x8cgpg056
 ```
 
-## Configure LocalOsmosis
+## Configure LocalInjective
 
-The majority of LocalOsmosis is implemented through a `docker-compose.yml` file, making it easily customizable. You can use LocalOsmosis as a starting template point for setting up your own local Osmosis testnet with Docker containers.
+The majority of LocalInjective is implemented through a `docker-compose.yml` file, making it easily customizable. You can use LocalInjective as a starting template point for setting up your own local Injective testnet with Docker containers.
 
-Out of the box, LocalOsmosis comes preconfigured with opinionated settings such as:
+Out of the box, LocalInjective comes preconfigured with opinionated settings such as:
 
 - ports defined for RPC (26657) and LCD (1317)
 - standard [accounts](#accounts)
@@ -153,25 +153,25 @@ sed -E -i '/timeout_(propose|prevote|precommit|commit)/s/[0-9]+m?s/200ms/' confi
 
 ### Modifying genesis
 
-You can change the `genesis.json` file by altering `config/genesis.json`. To load your changes, restart your LocalOsmosis.
+You can change the `genesis.json` file by altering `config/genesis.json`. To load your changes, restart your LocalInjective.
 
 ## Accounts
 
-LocalOsmosis is pre-configured with one validator and 10 accounts with ION and OSMO balances.
+LocalInjective is pre-configured with one validator and 10 accounts with INJ balances.
 
 | Account   | Address                                                                                                  | Mnemonic                                                                                                                                                                   |
 | --------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| validator | `osmo1phaxpevm5wecex2jyaqty2a4v02qj7qmlmzk5a`<br/>`osmovaloper1phaxpevm5wecex2jyaqty2a4v02qj7qm9v24r6` | `satisfy adjust timber high purchase tuition stool faith fine install that you unaware feed domain license impose boss human eager hat rent enjoy dawn`                    |
-| test1     | `osmo1cyyzpxplxdzkeea7kwsydadg87357qnahakaks`                                                           | `notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius`                       |
-| test2     | `osmo18s5lynnmx37hq4wlrw9gdn68sg2uxp5rgk26vv`                                                           | `quality vacuum heart guard buzz spike sight swarm shove special gym robust assume sudden deposit grid alcohol choice devote leader tilt noodle tide penalty`              |
-| test3     | `osmo1qwexv7c6sm95lwhzn9027vyu2ccneaqad4w8ka`                                                           | `symbol force gallery make bulk round subway violin worry mixture penalty kingdom boring survey tool fringe patrol sausage hard admit remember broken alien absorb`        |
-| test4     | `osmo14hcxlnwlqtq75ttaxf674vk6mafspg8xwgnn53`                                                           | `bounce success option birth apple portion aunt rural episode solution hockey pencil lend session cause hedgehog slender journey system canvas decorate razor catch empty` |
-| test5     | `osmo12rr534cer5c0vj53eq4y32lcwguyy7nndt0u2t`                                                           | `second render cat sing soup reward cluster island bench diet lumber grocery repeat balcony perfect diesel stumble piano distance caught occur example ozone loyal`        |
-| test6     | `osmo1nt33cjd5auzh36syym6azgc8tve0jlvklnq7jq`                                                           | `spatial forest elevator battle also spoon fun skirt flight initial nasty transfer glory palm drama gossip remove fan joke shove label dune debate quick`                  |
-| test7     | `osmo10qfrpash5g2vk3hppvu45x0g860czur8ff5yx0`                                                           | `noble width taxi input there patrol clown public spell aunt wish punch moment will misery eight excess arena pen turtle minimum grain vague inmate`                       |
-| test8     | `osmo1f4tvsdukfwh6s9swrc24gkuz23tp8pd3e9r5fa`                                                           | `cream sport mango believe inhale text fish rely elegant below earth april wall rug ritual blossom cherry detail length blind digital proof identify ride`                 |
-| test9     | `osmo1myv43sqgnj5sm4zl98ftl45af9cfzk7nhjxjqh`                                                           | `index light average senior silent limit usual local involve delay update rack cause inmate wall render magnet common feature laundry exact casual resource hundred`       |
-| test10    | `osmo14gs9zqh8m49yy9kscjqu9h72exyf295afg6kgk`                                                           | `prefer forget visit mistake mixture feel eyebrow autumn shop pair address airport diesel street pass vague innocent poem method awful require hurry unhappy shoulder`     |
+| validator | `inj10jmp6sgh4cc6zt3e8gw05wavvejgr5pw6m8j75`<br/>`injvaloper1zwxnl8zlqdfhxy7lzlslpfq3h7n7cuk4rlg6pe` | `gesture inject test cycle original hollow east ridge hen combine junk child bacon zero hope comfort vacuum milk pitch cage oppose unhappy lunar seat`                    |
+| test1     | `inj16wx7ye3ce060tjvmmpu8lm0ak5xr7gm2e0qwcq`                                                           | `notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius`                       |
+| test2     | `inj1pe9mc2q72u94sn2gg52ramrt26x5efw6rdmsj7`                                                           | `quality vacuum heart guard buzz spike sight swarm shove special gym robust assume sudden deposit grid alcohol choice devote leader tilt noodle tide penalty`              |
+| test3     | `inj1luqjvjyns9e92h06tq6zqtw76k8xtegfvhv6tg`                                                           | `symbol force gallery make bulk round subway violin worry mixture penalty kingdom boring survey tool fringe patrol sausage hard admit remember broken alien absorb`        |
+| test4     | `inj1y6gnay0pv49asun56la09jcmhg2kc94900xn4q`                                                           | `bounce success option birth apple portion aunt rural episode solution hockey pencil lend session cause hedgehog slender journey system canvas decorate razor catch empty` |
+| test5     | `inj1u27snswkjpenlscgvszcfjmz8uy2y5qavgqln3`                                                           | `second render cat sing soup reward cluster island bench diet lumber grocery repeat balcony perfect diesel stumble piano distance caught occur example ozone loyal`        |
+| test6     | `inj1082kgf9vna4v5pqvyevrh7qsn4t90nwf6gwynu`                                                           | `spatial forest elevator battle also spoon fun skirt flight initial nasty transfer glory palm drama gossip remove fan joke shove label dune debate quick`                  |
+| test7     | `inj18twjp50t8xvgwqzxr059jdkwhgv2ssucpt9asw`                                                           | `noble width taxi input there patrol clown public spell aunt wish punch moment will misery eight excess arena pen turtle minimum grain vague inmate`                       |
+| test8     | `inj1dvjr96xuew05wz66lxjmdjvqghdlec8l8h2q67`                                                           | `cream sport mango believe inhale text fish rely elegant below earth april wall rug ritual blossom cherry detail length blind digital proof identify ride`                 |
+| test9     | `inj18awjexq6yv85uplnsltdfj7gdtw3vs2rmgzuw4`                                                           | `index light average senior silent limit usual local involve delay update rack cause inmate wall render magnet common feature laundry exact casual resource hundred`       |
+| test10    | `inj1yhlrh2tjnmz78t0hwqm035xj57ulgajrpxv4nx`                                                           | `prefer forget visit mistake mixture feel eyebrow autumn shop pair address airport diesel street pass vague innocent poem method awful require hurry unhappy shoulder`     |
 
 ## Common issues
 
